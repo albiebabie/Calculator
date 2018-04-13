@@ -13,30 +13,16 @@ const firstNumber = parseInt(readline.prompt());
 console.log("Please enter your second number:");
 const secondNumber = parseInt(readline.prompt());
 
-switch (selectedOperator) {
-    case "+":
-        console.log(selectedOperator);
-        finalNumber = firstNumber + secondNumber;
-        break;
-
-    case "-":
-        console.log(selectedOperator);
-        finalNumber = firstNumber - secondNumber;
-        break;
-
-    case "*":
-        console.log(selectedOperator);
-        finalNumber = firstNumber * secondNumber;
-        break;
-
-    case "/":
-        console.log(selectedOperator);
-        finalNumber = firstNumber / secondNumber;
-        break;
-
-    default:
-        console.log("you haven't selected an operator!");
-        break;
+if (selectedOperator == "+") {
+    finalNumber = firstNumber + secondNumber;
+} else if (selectedOperator == "-") {
+    finalNumber = firstNumber - secondNumber;
+} else if (selectedOperator == "*") {
+    finalNumber = firstNumber * secondNumber;
+} else if (selectedOperator == "/") {
+    finalNumber = firstNumber / secondNumber;
+} else {
+    console.log("you haven't selected an operator!");
 }
 
-console.log(finalNumber);
+console.log("Outcome: " + finalNumber);
