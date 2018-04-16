@@ -1,28 +1,56 @@
 const readline = require("readline-sync");
 
-console.log("Please chose from the following operators: \n" +
-    "+ - * / \n" +
-    "then type your selection.");
+console.log("Welcome to the calculator! \n" +
+    "========================== \n" +
+    "Please enter one of the following operators: + - * /");
+const operator = readline.prompt();
 
-const selectedOperator = readline.prompt();
-var finalNumber;
+console.log("How many numbers would you like to add together?");
+const totalNumbersToBeAdded = readline.prompt();
 
-console.log("Please enter your first number:");
-const firstNumber = parseInt(readline.prompt());
+let numbers = [];
+var manipulatedNumber = 0;
 
-console.log("Please enter your second number:");
-const secondNumber = parseInt(readline.prompt());
-
-if (selectedOperator == "+") {
-    finalNumber = firstNumber + secondNumber;
-} else if (selectedOperator == "-") {
-    finalNumber = firstNumber - secondNumber;
-} else if (selectedOperator == "*") {
-    finalNumber = firstNumber * secondNumber;
-} else if (selectedOperator == "/") {
-    finalNumber = firstNumber / secondNumber;
-} else {
-    console.log("you haven't selected an operator!");
+for (let i = 0; i < totalNumbersToBeAdded; i++) {
+    console.log("Please enter number " + (i + 1) + ":");
+    let number = parseInt(readline.prompt());
+    numbers.push(number);
 }
 
-console.log("Outcome: " + finalNumber);
+switch (operator) {
+    case "+":
+        for (let i = 0; i < numbers.length; i++) {
+            let number = numbers[i];
+            manipulatedNumber += number;
+        }
+        break;
+
+    case "-":
+        manipulatedNumber = numbers[0];
+        for (let i = 1; i < numbers.length; i++) {
+            let number = numbers[i];
+            manipulatedNumber -= number;
+        }
+        break;
+
+    case "*":
+        manipulatedNumber = numbers[0];
+        for (let i = 1; i < numbers.length; i++) {
+            let number = numbers[i];
+            manipulatedNumber *= number;
+        }
+        break;
+
+    case "/":
+        manipulatedNumber = numbers[0];
+        for (let i = 1; i < numbers.length; i++) {
+            let number = numbers[i];
+            manipulatedNumber /= number;
+        }
+        break;
+
+    default:
+        break;
+}
+
+console.log("Result: " + manipulatedNumber);
