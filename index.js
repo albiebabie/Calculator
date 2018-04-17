@@ -1,8 +1,9 @@
 const readline = require("readline-sync");
 
 function printWelcomeMessage() {
-    console.log("Welcome to the calculator! \n" +
-        "========================== \n");
+    console.log(`
+Welcome to the calculator!
+==========================`);
 }
 
 function getStringInputWithMessage(message) {
@@ -21,13 +22,16 @@ function getNumberInputWithMessage(message) {
 }
 
 function getOperator() {
-    let message = "Please chose from the following operators: \n + - * /" + "\n" + "and type your selection.";
+    let message = `
+Please chose from the following operators:
++ - * /
+and type your selection.`;
     return getStringInputWithMessage(message);
 }
 
 function getNumbers(operator) {
     let numbers = [];
-    let message = "How many numbers would you like to " + operator + " ?";
+    let message = `How many numbers would you like to ${operator} ?`;
     let totalNumbers = getNumberInputWithMessage(message);
 
     for (let i = 0; i < totalNumbers; i++) {
@@ -57,7 +61,7 @@ function caclulate(numbers, operator) {
 }
 
 function printResult(result) {
-    console.log("The answer is: " + result);
+    console.log(`The answer is: ${result}`);
 }
 
 function oneCalculation() {
