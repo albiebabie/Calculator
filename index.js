@@ -1,5 +1,8 @@
 const readline = require("readline-sync");
 
+const ARITHEMATIC_MODE = "1";
+const VOWEL_COUNTING_MODE = "2";
+
 function printWelcomeMessage() {
     console.log(`
 Welcome to the calculator!
@@ -64,14 +67,68 @@ function printResult(result) {
     console.log(`The answer is: ${result}`);
 }
 
-function oneCalculation() {
+function oneArithematicCalculation() {
     let operator = getOperator();
     let numbers = getNumbers(operator);
     let result = caclulate(numbers, operator);
     printResult(result);
 }
 
+function getStringForVowelCounting() {
+    let message = "Please enter a string:"
+    return getStringInputWithMessage(message);
+}
+
+function oneVowelCalculation() {
+    const string = getStringForVowelCounting();
+    const vowelCount = calculateVowelCountForString(string);
+    printVowelCount(vowelCount);
+}
+
+function calculateVowelCountForString(string) {
+    const stringUpperCase = string.toUpperCase()
+    const lettersArray = stringUpperCase.split("");
+    const vowelCount = {
+        A: 0,
+        E: 0,
+        I: 0,
+        O: 0,
+        U: 0
+    }
+    const vowels = Object.keys(vowelCount);
+
+    for (let i = 0; i < lettersArray.length; i++) {
+        const letter = lettersArray[i];
+        if (vowels.includes(letter)) {
+            vowelCount[letter] += 1;
+        }
+    }
+    return vowelCount;
+}
+
+function printVowelCount(vowelCount) {
+    const message = "The vowel count is:"
+    console.log(message);
+    for (let vowel in vowelCount) {
+        console.log(`${vowel}: ${vowelCount[vowel]}`)
+    }
+}
+
+function getcalculationMode() {
+    let message = `
+Please chose from the following calculation mode:
+1) Arithematic
+2) Vowel Counting
+and type your selection.`;
+    return getStringInputWithMessage(message);
+}
+
 printWelcomeMessage();
 while (true) {
-    oneCalculation();
+    const calculationMode = getcalculationMode();
+    if (calculationMode === ARITHEMATIC_MODE) {
+        oneArithematicCalculation();
+    } else if (calculationMode === VOWEL_COUNTING_MODE) {
+        oneVowelCalculation();
+    }
 }
