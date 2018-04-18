@@ -22,22 +22,26 @@ function getNumbers(operator) {
     return numbers;
 }
 
-function caclulate(numbers, operator) {
-    let result = numbers[0];
-    for (let i = 1; i < numbers.length; i++) {
-        let number = numbers[i];
-        if (operator == "+") {
-            console.log(typeof number);
-
-            result += number;
-        } else if (operator == "-") {
-            result -= number;
-        } else if (operator == "*") {
-            result *= number;
-        } else if (operator == "/") {
-            result /= number;
-        }
+function numberIsGreaterThanZero(number) {
+    if (number > 0) {
+        return number;
     }
+}
+
+function caclulate(numbers, operator) {
+    let result;
+
+    if (operator == "+") {
+        result = numbers.reduce((total, number) => total + number);
+    } else if (operator == "-") {
+        result = numbers.reduce((total, number) => total - number);
+    } else if (operator == "*") {
+        result = numbers.reduce((total, number) => total * number);
+    } else if (operator == "/") {
+        numbers = numbers.filter(number => numberIsGreaterThanZero(number));
+        result = numbers.reduce((total, number) => total / number);
+    }
+
     return result;
 }
 
