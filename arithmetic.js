@@ -9,7 +9,7 @@ and type your selection.`;
     if (operatorIsValid(operator)) {
         return operator;
     } else {
-        throw new Error(`ERROR: "${operator}" is an Invalid Operator!`);
+        return null;
     }
 }
 
@@ -64,14 +64,10 @@ function printResult(result) {
 }
 
 exports.oneArithmeticCalculation = function() {
-    let operator = false;
-    while (operator === false) {
-        try {
-            operator = getOperator();
-        } catch (error) {
-            console.log(`${error.message}`);
-        }
-    }
+    let operator;
+    do {
+        operator = getOperator();
+    } while (operator === null);
     let numbers = getNumbers(operator);
     let result = caclulate(numbers, operator);
     printResult(result);
