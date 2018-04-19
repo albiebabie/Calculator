@@ -6,11 +6,19 @@ Please chose from the following operators:
 + - * /
 and type your selection.`;
     const operator = userInput.getStringInputWithMessage(message);
-    const operators = ["+", "-", "*", "/"];
-    if (operators.includes(operator)) {
+    if (operatorIsValid(operator)) {
         return operator;
     } else {
         throw new Error(`ERROR: "${operator}" is an Invalid Operator!`);
+    }
+}
+
+function operatorIsValid(operator) {
+    const validOperators = ["+", "-", "*", "/"];
+    if (validOperators.includes(operator)) {
+        return true;
+    } else {
+        return false;
     }
 }
 
