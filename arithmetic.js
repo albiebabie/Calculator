@@ -1,11 +1,17 @@
 const userInput = require("./userInput");
 
 function getOperator() {
-    let message = `
+    const message = `
 Please chose from the following operators:
 + - * /
 and type your selection.`;
-    return userInput.getStringInputWithMessage(message);
+    const operator = userInput.getStringInputWithMessage(message);
+    const operators = ["+", "-", "*", "/"];
+    if (operators.includes(operator)) {
+        return operator;
+    } else {
+        throw new Error(`ERROR: "${operator}" is an Invalid Operator!`);
+    }
 }
 
 function getNumbers(operator) {
@@ -49,8 +55,15 @@ function printResult(result) {
     console.log(`The answer is: ${result}`);
 }
 
-exports.oneArithematicCalculation = function() {
-    let operator = getOperator();
+exports.oneArithmeticCalculation = function() {
+    let operator = false;
+    while (operator === false) {
+        try {
+            operator = getOperator();
+        } catch (error) {
+            console.log(`${error.message}`);
+        }
+    }
     let numbers = getNumbers(operator);
     let result = caclulate(numbers, operator);
     printResult(result);
